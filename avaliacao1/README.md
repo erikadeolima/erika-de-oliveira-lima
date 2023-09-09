@@ -20,7 +20,7 @@ cd avaliacao1
 
 Já dentro da pasta, de a fim de facilitar a execução do projeto, foram adicionados scripts de execução, sendo eles:
 
-`yarn compile` - executa o processo de compilação do arquivo app.ts para app.ts.
+`yarn compile` - executa o processo de compilação do arquivo app.ts para app.js.
 
 `yarn clear` - recomenda-se executar este script pois a porta localhost:5500 pode estar ocupada, então a execução desse codigo "limpa" os processos executados na porta em questão.
 
