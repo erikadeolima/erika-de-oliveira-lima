@@ -4,7 +4,7 @@ Neste desafio vocês deveria criar uma calculadora para funcionar e ela deve pel
 
 ---
 
-# Executando o projeto
+## Executando o projeto
 
 Primeiramente clone o repositório raiz para sua maquina, execute o seguinte comando no terminal bash:
 
@@ -24,7 +24,12 @@ Já dentro da pasta, de a fim de facilitar a execução do projeto, foram adicio
 
 `yarn clear` - recomenda-se executar este script pois a porta localhost:5500 pode estar ocupada, então a execução desse codigo "limpa" os processos executados na porta em questão.
 
-Caso ao executar apareça uma mensagem "error Command failed with exit code 2.", siginifica que não havia nenhum processo em execução nessa porta.
+> Caso ao executar apareça uma mensagem "error Command failed with exit code 2.", siginifica que não havia nenhum processo em execução nessa porta.
 
 `yarn start` - executa o processo de "Go Live" dos arquivos, e possibilita visualizar o arquivo index.html. Para acessa-lo, em um navegador de sua preferência, navege até http://localhost:5500/ .
-Caso não tenha executado o comando yarn clear, e tenha algum outro processo na porta em questão, ele automaticamente redirecionará para uma porta aleatória. Portanto, caso ao acessar o http://localhost:5500/, e aparecer um erro, ou algo diferente de uma [calculadora](avaliacao1/calc.png). Verifique no [terminal qual a porta que se encontra o processo de live-server](avaliacao1/terminal.png), e acesse http://localhost:{porta real}. Ex: http://localhost:35795/.
+
+> Caso não tenha executado o comando yarn clear, e tenha algum outro processo na porta em questão, ele automaticamente redirecionará para uma porta aleatória. Portanto, caso ao acessar o http://localhost:5500/, e aparecer um erro, ou algo diferente de uma
+> ![calculadora](https://github.com/erikadeolima/erika-de-oliveira-lima/blob/master/avaliacao1/calc.png).
+> Verifique no terminal qual a porta que se encontra o processo de live-server, exe:
+> ![terminal qual a porta que se encontra o processo de live-server](https://github.com/erikadeolima/erika-de-oliveira-lima/blob/master/avaliacao1/terminal.png)
+> e acesse http://localhost:{porta real}. Ex: http://localhost:35795/.
