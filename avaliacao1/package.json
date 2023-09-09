@@ -6,9 +6,9 @@
   "author": "erikadeolima <erikadeo.lima@hotmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "yarn global add live-server && npx live-server --port=5501 ./",
     "compile": "npx tsc --project ./tsconfig.json",
-    "clear": "kill $(lsof -t -i:5500)",
-    "start": "npx live-server --port=5500 ./"
+    "clear": "kill $(lsof -t -i:5501)"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

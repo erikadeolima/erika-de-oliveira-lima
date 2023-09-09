@@ -1,15 +1,18 @@
 "use strict";
-const teclas = document.querySelector(".teclado");
-const display = document.getElementById("display");
+let displayValue = "0";
 let numsToCalculate = [];
 let operatorsToCalculate = [];
+const buttons = document.querySelectorAll(".tecla");
+const display = document.getElementById("display");
 function clearAll() {
     numsToCalculate.length = 0;
     operatorsToCalculate.length = 0;
-    display.textContent = "0";
+    displayValue = "0";
+    return display.textContent = displayValue;
 }
 function clearDisplay() {
-    display.textContent = "0";
+    displayValue = "0";
+    return display.textContent = displayValue;
 }
 function changeSignal() {
     const actualValue = display.innerHTML;
@@ -44,12 +47,12 @@ function splitValues() {
 function squareRoot() {
     if (display.textContent === '0') {
         operatorsToCalculate.push('√');
-        display.textContent = '√';
+        inputDisplay('√');
     }
     else {
         numsToCalculate.push(Number(display.textContent));
         operatorsToCalculate.push('√');
-        display.textContent = '√';
+        inputDisplay('√');
     }
 }
 function calculateOperations(nums, operators) {
@@ -93,69 +96,70 @@ function calculateOperations(nums, operators) {
         }
     }
     ;
-    return resultado;
+    switch (resultado) {
+        case Infinity:
+            throw new Error("Error");
+        default:
+            return resultado;
+    }
 }
-function keysOperation(functionOfKey) {
-}
-function pressedKeys(keyContent) {
-}
-teclas.addEventListener("click", e => {
-    const key = e.target;
-    const functionOfKey = key.attributes.class.textContent;
-    const keyContent = key.attributes.id.textContent;
-    if (functionOfKey === 'tecla') {
-        let displayedNum = display.textContent;
-        if (keyContent === 'on') {
-            clearAll();
-        }
-        else if (keyContent === 'raiz') {
-            squareRoot();
-        }
-        else if (keyContent === 'igual') {
-            numsToCalculate.push(Number(display.textContent));
-            try {
-                const resultado = calculateOperations(numsToCalculate, operatorsToCalculate);
-                return display.textContent = resultado.toString();
-            }
-            catch (error) {
-                return display.textContent = error.message;
-            }
-        }
-        else if (keyContent === 'sign') {
-            changeSignal();
-        }
-        else {
-            if (keyContent === 'ponto') {
-                if (displayedNum.indexOf('.') === -1) {
-                    return display.textContent = displayedNum + '.';
-                }
-            }
-            else {
-                if (displayedNum === '0' || displayedNum === '√') {
-                    display.textContent = keyContent;
-                }
-                else {
-                    display.textContent = displayedNum + keyContent;
-                }
-            }
-        }
+function inputDisplay(digit) {
+    if (displayValue.length >= 8)
+        return;
+    if (displayValue === "0" || displayValue === "√")
+        displayValue = '';
+    if (digit.length >= 8) {
+        displayValue = digit.slice(0, 9);
     }
     else {
-        if (functionOfKey === 'tecla suma') {
-            console.log('soma');
-            addValues();
-        }
-        if (functionOfKey === 'tecla multiplica') {
-            console.log('multiplica');
-            multiplyValues();
-        }
-        if (functionOfKey === 'tecla resta') {
-            console.log('resta');
-            subtractValues();
-        }
-        if (functionOfKey === 'tecla divide') {
-            console.log('divide');
-            splitValues();
-        }
+        displayValue += digit;
     }
+    return display.textContent = displayValue;
+}
+;
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const functionOfKey = button.getAttribute("class");
+        const keyContent = button.getAttribute("alt");
+        switch (keyContent) {
+            case 'On':
+                clearAll();
+                break;
+            case 'raiz':
+                squareRoot();
+                break;
+            case 'signo':
+                changeSignal();
+                break;
+            case 'ponto':
+                if (displayValue.indexOf('.') === -1) {
+                    return inputDisplay('.');
+                }
+            case 'mas':
+                addValues();
+                break;
+            case 'por':
+                multiplyValues();
+                break;
+            case 'menos':
+                subtractValues();
+                break;
+            case 'dividido':
+                splitValues();
+                break;
+            case 'igual':
+                numsToCalculate.push(Number(displayValue));
+                try {
+                    const resultado = calculateOperations(numsToCalculate, operatorsToCalculate);
+                    clearDisplay();
+                    return inputDisplay(resultado.toString());
+                }
+                catch (error) {
+                    return inputDisplay(error.message);
+                }
+            default:
+                let digit = keyContent === null || keyContent === void 0 ? void 0 : keyContent.toString();
+                inputDisplay(digit);
+        }
+    });
 });

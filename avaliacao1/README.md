@@ -22,13 +22,13 @@ Já dentro da pasta, de a fim de facilitar a execução do projeto, foram adicio
 
 `yarn compile` - executa o processo de compilação do arquivo app.ts para app.js.
 
-`yarn clear` - recomenda-se executar este script pois a porta localhost:5500 pode estar ocupada, então a execução desse codigo "limpa" os processos executados na porta em questão.
+`yarn clear` - recomenda-se executar este script pois a porta localhost:5501 pode estar ocupada, então a execução desse codigo "limpa" os processos executados na porta em questão.
 
 > Caso ao executar apareça uma mensagem "error Command failed with exit code 2.", siginifica que não havia nenhum processo em execução nessa porta.
 
-`yarn start` - executa o processo de "Go Live" dos arquivos, e possibilita visualizar o arquivo index.html. Para acessa-lo, em um navegador de sua preferência, navege até http://localhost:5500/ .
+`yarn start` - executa o processo de "Go Live" dos arquivos, e possibilita visualizar o arquivo index.html. Para acessa-lo, em um navegador de sua preferência, navege até http://localhost:5501/ .
 
-> Caso não tenha executado o comando yarn clear, e tenha algum outro processo na porta em questão, ele automaticamente redirecionará para uma porta aleatória. Portanto, caso ao acessar o http://localhost:5500/, e aparecer um erro, ou algo diferente de uma
+> Caso não tenha executado o comando yarn clear, e tenha algum outro processo na porta em questão, ele automaticamente redirecionará para uma porta aleatória. Portanto, caso ao acessar o http://localhost:5501/, e aparecer um erro, ou algo diferente de uma
 > ![calculadora](https://github.com/erikadeolima/erika-de-oliveira-lima/blob/master/avaliacao1/calc.png).
 
 > Verifique no terminal qual a porta que se encontra o processo de live-server, exe:
