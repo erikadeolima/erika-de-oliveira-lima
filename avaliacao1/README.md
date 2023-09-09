@@ -6,7 +6,7 @@ Neste desafio vocês deveria criar uma calculadora para funcionar e ela deve pel
 
 ## Executando o projeto
 
-Primeiramente clone o repositório raiz para sua maquina, execute o seguinte comando no terminal bash:
+Primeiramente, caso não tenha feito, clone o repositório raiz para sua maquina, execute o seguinte comando no terminal bash:
 
 <pre>
 git clone git@github.com:erikadeolima/erika-de-oliveira-lima.git
