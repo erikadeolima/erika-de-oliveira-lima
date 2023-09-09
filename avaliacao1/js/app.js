@@ -55,6 +55,12 @@ function squareRoot() {
         inputDisplay('√');
     }
 }
+function insertDot() {
+    if (displayValue.indexOf('.') === -1) {
+        console.log(`🐞 ~ file: app.ts:62 ~ insertDot ~ displayValue.indexOf('.') === -1:`, displayValue.indexOf('.') === -1);
+        return inputDisplay('.');
+    }
+}
 function calculateOperations(nums, operators) {
     let resultado = nums[0];
     if (nums.length === operators.length) {
@@ -131,10 +137,9 @@ buttons.forEach((button) => {
             case 'signo':
                 changeSignal();
                 break;
-            case 'ponto':
-                if (displayValue.indexOf('.') === -1) {
-                    return inputDisplay('.');
-                }
+            case 'punto':
+                insertDot();
+                break;
             case 'mas':
                 addValues();
                 break;
