@@ -1,8 +1,8 @@
-
-var teclas = document.querySelector(".teclado");
-var display = document.getElementById("display");
-var numsToCalculate = [];
-var operatorsToCalculate = [];
+"use strict";
+const teclas = document.querySelector(".teclado");
+const display = document.getElementById("display");
+let numsToCalculate = [];
+let operatorsToCalculate = [];
 function clearAll() {
     numsToCalculate.length = 0;
     operatorsToCalculate.length = 0;
@@ -12,8 +12,8 @@ function clearDisplay() {
     display.textContent = "0";
 }
 function changeSignal() {
-    var actualValue = display.innerHTML;
-    var changedSignalvalue = (Number(actualValue) * -1).toString();
+    const actualValue = display.innerHTML;
+    const changedSignalvalue = (Number(actualValue) * -1).toString();
     switch (changedSignalvalue) {
         case '-0':
             return display.innerHTML = actualValue;
@@ -21,41 +21,39 @@ function changeSignal() {
             return display.innerHTML = (changedSignalvalue);
     }
 }
-function somarValores() {
+function addValues() {
     numsToCalculate.push(Number(display.textContent));
     operatorsToCalculate.push('+');
     clearDisplay();
 }
-function subtrairValores() {
+function subtractValues() {
     numsToCalculate.push(Number(display.textContent));
     operatorsToCalculate.push('-');
     clearDisplay();
 }
-function multiplicarValores() {
+function multiplyValues() {
     numsToCalculate.push(Number(display.textContent));
     operatorsToCalculate.push('*');
     clearDisplay();
 }
-function dividirValores() {
+function splitValues() {
     numsToCalculate.push(Number(display.textContent));
     operatorsToCalculate.push('/');
     clearDisplay();
 }
-function raizQuadrada() {
+function squareRoot() {
     if (display.textContent === '0') {
         operatorsToCalculate.push('√');
         display.textContent = '√';
-        console.log("\uD83D\uDC1E ~ file: app.ts:51 ~ raizQuadrada ~ display.textContent:", display.textContent);
     }
     else {
         numsToCalculate.push(Number(display.textContent));
         operatorsToCalculate.push('√');
         display.textContent = '√';
-        console.log("\uD83D\uDC1E ~ file: app.ts:56 ~ raizQuadrada ~ display.textContent:", display.textContent);
     }
 }
-function calcularOperacoes(nums, operators) {
-    var resultado = nums[0];
+function calculateOperations(nums, operators) {
+    let resultado = nums[0];
     if (nums.length === operators.length) {
         if (operatorsToCalculate[0] === '√') {
             resultado = Math.sqrt(nums[0]);
@@ -68,9 +66,9 @@ function calcularOperacoes(nums, operators) {
         operatorsToCalculate.length = 0;
         throw new Error("Error");
     }
-    for (var position = 0; position < operators.length; position++) {
-        var operador = operators[position];
-        var proximoNumero = nums[position + 1];
+    for (let position = 0; position < operators.length; position++) {
+        const operador = operators[position];
+        const proximoNumero = nums[position + 1];
         switch (operador) {
             case '+':
                 resultado += proximoNumero;
@@ -97,25 +95,26 @@ function calcularOperacoes(nums, operators) {
     ;
     return resultado;
 }
-teclas.addEventListener("click", function (e) {
-    var key = e.target;
-    var functionOfKey = key.attributes["class"].textContent;
-    var keyContent = key.attributes.id.textContent;
+function keysOperation(functionOfKey) {
+}
+function pressedKeys(keyContent) {
+}
+teclas.addEventListener("click", e => {
+    const key = e.target;
+    const functionOfKey = key.attributes.class.textContent;
+    const keyContent = key.attributes.id.textContent;
     if (functionOfKey === 'tecla') {
-        var displayedNum = display.textContent;
+        let displayedNum = display.textContent;
         if (keyContent === 'on') {
             clearAll();
         }
         else if (keyContent === 'raiz') {
-            raizQuadrada();
+            squareRoot();
         }
         else if (keyContent === 'igual') {
-            console.log('igual');
             numsToCalculate.push(Number(display.textContent));
-            console.log(numsToCalculate);
-            console.log(operatorsToCalculate);
             try {
-                var resultado = calcularOperacoes(numsToCalculate, operatorsToCalculate);
+                const resultado = calculateOperations(numsToCalculate, operatorsToCalculate);
                 return display.textContent = resultado.toString();
             }
             catch (error) {
@@ -141,21 +140,22 @@ teclas.addEventListener("click", function (e) {
             }
         }
     }
-    console.log('functionOfKey', functionOfKey);
-    if (functionOfKey === 'tecla suma') {
-        console.log('soma');
-        somarValores();
-    }
-    if (functionOfKey === 'tecla multiplica') {
-        console.log('multiplica');
-        multiplicarValores();
-    }
-    if (functionOfKey === 'tecla resta') {
-        console.log('resta');
-        subtrairValores();
-    }
-    if (functionOfKey === 'tecla divide') {
-        console.log('divide');
-        dividirValores();
+    else {
+        if (functionOfKey === 'tecla suma') {
+            console.log('soma');
+            addValues();
+        }
+        if (functionOfKey === 'tecla multiplica') {
+            console.log('multiplica');
+            multiplyValues();
+        }
+        if (functionOfKey === 'tecla resta') {
+            console.log('resta');
+            subtractValues();
+        }
+        if (functionOfKey === 'tecla divide') {
+            console.log('divide');
+            splitValues();
+        }
     }
 });

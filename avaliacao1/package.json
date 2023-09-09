@@ -1,0 +1,16 @@
+{
+  "name": "erika-de-oliveira-lima",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:erikadeolima/erika-de-oliveira-lima.git",
+  "author": "erikadeolima <erikadeo.lima@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "npx tsc --project ./tsconfig.json",
+    "clear": "kill $(lsof -t -i:5500)",
+    "start": "npx live-server --port=5500 ./"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

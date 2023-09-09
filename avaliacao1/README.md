@@ -1,19 +1,30 @@
-# calculadora-template-sample
+# Avaliação - 1
 
-Neste desafio vocês deverão criar uma calculadora para funcionar e ela deve pelo menos fazer as 4 operações da matemática: **soma, subtração, multiplicação ou divisão**. Não precisa fazer ela do zero, você pode baixar um layout pronto neste [repositório](https://github.com/profalves/calculadora-template-sample.git) e editar somente o arquivo javascript, que é o foco do desafio.
+Neste desafio vocês deveria criar uma calculadora para funcionar e ela deve pelo menos fazer as 4 operações da matemática: **soma, subtração, multiplicação ou divisão**. Foi utilizado esse layout pronto, disponível neste [repositório](https://github.com/profalves/calculadora-template-sample.git), onde editei somente o arquivo typescript(app.ts), que foi compilado para o javascript(app.js) que é o foco do desafio.
 
-## Obrigatório:
+---
 
--   Organize em funções diferentes para cada ação diferente, por exemplo uma função para o click nos botões numéricos e outra função para os botões de operação.
-- Usar o template https://github.com/profalves/calculadora-template-sample.git
--  Não altere a estrutura HTML pronto da calculadora, manipule o DOM através do javascript usando `addEventListener`.
--  A calculadora não deve aceitar divisão por zero.
+# Executando o projeto
 
-## Para se destacar:
+Primeiramente clone o repositório raiz para sua maquina, execute o seguinte comando no terminal bash:
 
--   Faça com que o botão **ON/C** desempenhe a função de limpar o display.
--   Possibilite as operações fracionárias, por exemplo: `1.5 + 2 = 3.5`. Neste caso, é importante que o ponto seja adicionado no display apenas uma vez.
--   Complete a calculadora com as operações de **porcentagem**, **raiz quadrada**, **troca de sinal(+/-)**, etc.
--   Limite a tela para exibir no máximo 8 digitos.
--   Faça com que possa ser feito vários cálculos na mesma digitação, ex. Digitado: `1 + 2 * 2`, Resultado: `6`.
--   Evitar o uso do `eval()`, procure a função no javascript para converter o valor do display para números.
+<pre>
+git clone git@github.com:erikadeolima/erika-de-oliveira-lima.git
+</pre>
+
+Entre na pasta da avaliação, como comando:
+
+<pre>
+cd avaliacao1
+</pre>
+
+Já dentro da pasta, de a fim de facilitar a execução do projeto, foram adicionados scripts de execução, sendo eles:
+
+`yarn compile` - executa o processo de compilação do arquivo app.ts para app.ts.
+
+`yarn clear` - recomenda-se executar este script pois a porta localhost:5500 pode estar ocupada, então a execução desse codigo "limpa" os processos executados na porta em questão.
+
+Caso ao executar apareça uma mensagem "error Command failed with exit code 2.", siginifica que não havia nenhum processo em execução nessa porta.
+
+`yarn start` - executa o processo de "Go Live" dos arquivos, e possibilita visualizar o arquivo index.html. Para acessa-lo, em um navegador de sua preferência, navege até http://localhost:5500/ .
+Caso não tenha executado o comando yarn clear, e tenha algum outro processo na porta em questão, ele automaticamente redirecionará para uma porta aleatória. Portanto, caso ao acessar o http://localhost:5500/, e aparecer um erro, ou algo diferente de uma [calculadora](avaliacao1/calc.png). Verifique no [terminal qual a porta que se encontra o processo de live-server](avaliacao1/terminal.png), e acesse http://localhost:{porta real}. Ex: http://localhost:35795/.
