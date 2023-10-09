@@ -116,13 +116,13 @@ export const Form= () => {
       <div className={styles.campo}>
       <label className={styles.label}>Senha</label>
       <p className={styles.error}>{errors.password?.message}</p>
-      <input className={styles.input} {...register("password")} />
+      <input type='password' className={styles.input} {...register("password")} />
       
       </div>
       <div className={styles.campo}>
       <label className={styles.label}>Confirme a Senha</label>
       <p className={styles.error}>{errors.confirmPassword?.message}</p>    
-      <input className={styles.input} {...register("confirmPassword")} />
+      <input type='password' className={styles.input} {...register("confirmPassword")} />
      
       </div>
       </div>

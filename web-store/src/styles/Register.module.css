@@ -27,6 +27,7 @@
   height: 95px;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 0.3rem;
 }
 .campoV1{
   display: flex;
@@ -42,6 +43,7 @@
   font: inherit;
   margin-bottom: 0.5rem;
   border-radius: 0.5rem;
+  width: 316px;
 }
 .error {
   display: flex;
