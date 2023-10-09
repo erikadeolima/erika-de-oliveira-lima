@@ -1,0 +1,64 @@
+.container {
+  min-height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  height: 270px;
+  max-height: 300px;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: center;
+}
+.loginTitle{
+  text-align: center;
+  margin-bottom: 1.3rem;
+}
+.email{
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  font-size: 0.8em;
+  height: 1rem;
+  margin: 0rem 0rem 0rem 0rem;
+}
+.register{
+  margin-top: 1rem;
+  text-align: center;
+}
+.button {
+  margin: 0;
+  padding: .4rem 1.5rem;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  /* Adicione outros estilos conforme necessário */
+}
+
+.input {
+  padding: .4rem 0.4rem;
+  background: none;
+  font: inherit;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+}
