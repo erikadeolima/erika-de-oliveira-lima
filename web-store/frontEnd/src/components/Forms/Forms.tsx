@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler  } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "../../styles/Register.module.css";
+import { registerUser } from "@/pages/api/service/userService";
 
-interface IFormInput {
+export interface IFormPayload {
   name: string;
   email: string;
   address: string;
@@ -14,8 +15,10 @@ interface IFormInput {
   zipcode: string;
   neighborhood: string;
   password: string;
-  confirmPassword: string;
   privacy: boolean;
+};
+export interface IFormInput extends IFormPayload {
+  confirmPassword: string;
 }
 
 const schema = yup.object().shape({
@@ -26,7 +29,7 @@ const schema = yup.object().shape({
     /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     "Email inválido"
   ),
-  address: yup.string().required("Campo obrigatório").matches(/^.+,\d{1,4}$/, "Endereço inválido, insira no formato Rua dos Cabritos, 1234"),
+  address: yup.string().required("Campo obrigatório"),
   city: yup.string().required("Campo obrigatório"),
   state: yup.string().required("Campo obrigatório"),
   phone: yup
@@ -62,12 +65,31 @@ export const Form= () => {
     formState: {errors},
   } = useForm<IFormInput>({resolver: yupResolver(schema) as any});
 
-  const onSubmit = (data: IFormInput) => {
+  const subimtData = async (payload: IFormPayload) => {
+      try {       
+        const newUser = await registerUser(payload);
+        alert('Usuário criado com sucesso!');
+      } catch (error: any) {
+        alert('Erro ao criar usuário, certifique-se de que  não possui uma conta');
+      }
+    
+  }
+
+  const onSubmit = async (data: IFormInput) => {
     console.log(data);
-  };
+    try {
+      await schema.validate(data);
+      subimtData(data);
+    } catch (error) {
+      console.log(error);
+    };
+
+   };
 
   return (
       <form className={styles.form}onSubmit={handleSubmit(onSubmit)}>
+      <div>
+      <h4>Dados pessoais</h4>
       <div className={styles.campo}>
       <label className={styles.label}>Nome Completo</label>
       <p className={styles.error}>{errors?.name?.message}</p>   
@@ -82,6 +104,7 @@ export const Form= () => {
       <label className={styles.label}>Telefone Celular</label>
       <p className={styles.error}>{errors.phone?.message}</p>
       <input className={styles.input} {...register("phone")} />
+      </div>
       </div>
       <h4>Endereço</h4>
       <div >

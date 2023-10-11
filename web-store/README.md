@@ -1,40 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Olá bem-vindo ao projeto web-store:
 
-## Getting Started
+Antes de mais nada, gostaria de agradecer seu interesse no meu projeto. Agora vou passar algumas informações:
 
-First, run the development server:
+-> Antes de mais nada se certifique que tenha o Docker instalado em sua maquina, ele será algo bem importante para que o projeto rode de forma eficaz.
 
-```bash
+-> Já possui / instalou o docker? Então podemos continuar:
+
+-> Peço que rode o "docker compose -f "web-store/docker-compose.yaml" up -d --build" no seu terminal bash, isso fará com que o banco de dados possua o ambiente ideal para funcionar corretamente.
+
+-> Rodou?
+
+-> Agora peço que no seu terminal, cerifique-se que ele esteja com o path relativo a pelo menos a raiz do projeto. Algo com `/erika-de-oliveira-lima`
+
+cd web-store/backend
+
+npm install
+
+npm run db:reset
+
+npm run clear
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Esses comandos garantem que o back end esteja funcionando.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Depois siga os seguinte comando no terminal
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+cd ../frontEnd
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+yarn run clear
 
-## Learn More
+yarn run dev
 
-To learn more about Next.js, take a look at the following resources:
+Esses comandos garantem que o fron-end esteja funcioando corretamente no endereço 'http://localhost:3000'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Com ambas aplicações funcionando, pode usar a aplicação do front-end no endereço indicado (http://localhost:3000), da forma como preferir.

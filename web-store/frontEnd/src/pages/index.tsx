@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { Button } from "@/components/Button/Button";
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
+import { login } from "./api/service/userService";
 
 const schema = yup.object().shape({
   email: yup.string()
@@ -24,13 +25,18 @@ const schema = yup.object().shape({
 
 export default function Home() {
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, formState: { errors}, reset } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmitHandler = ({e, data}:any) => {
-    e.preventDefault();
-    console.log({ data });
-    reset();
+  const onSubmitHandler = async (data:any, event:any) => {
+    event.preventDefault();
+    try {
+      login(data.email, data.password);
+      reset();
+    } catch (error) {
+      console.log(error);
+      errors.password = { type: "required", message: "Email ou senha inválidos" };
+    }
   };
 
   const goToRegister = () => {
