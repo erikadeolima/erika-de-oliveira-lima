@@ -42,8 +42,8 @@ const addInCart = () => {
         name: name,
         src: url_image,
         value: value,
-        quantity: unity,
-        subTotal: value * unity
+        quantity: unity + 1,
+        subTotal: value * (unity + 1)
     });
 };
 
@@ -55,8 +55,8 @@ const removeOfCart = () =>{
         name: name,
         src: url_image,
         value: value,
-        quantity: unity,
-        subTotal: value * unity
+        quantity: unity -1,
+        subTotal: value * (unity -1)
     });
     } else {
         return;
