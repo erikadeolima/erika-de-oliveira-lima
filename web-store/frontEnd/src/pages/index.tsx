@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Button } from "@/components/Button/Button";
 import { useRouter } from 'next/router';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Login.module.css';
 import { login } from "./api/service/userService";
 
 const schema = yup.object().shape({
@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   ),
 });
 
-export default function Home() {
+export default function Login() {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors}, reset } = useForm({
     resolver: yupResolver(schema),
@@ -33,6 +33,7 @@ export default function Home() {
     try {
       login(data.email, data.password);
       reset();
+      router.push("/home");
     } catch (error) {
       console.log(error);
       errors.password = { type: "required", message: "Email ou senha inválidos" };
@@ -76,5 +77,4 @@ export default function Home() {
     </div>
     </>
   )
-}
-
+};

@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     url_image: DataTypes.STRING,
     value: DataTypes.INTEGER,
+    description: DataTypes.STRING,
   },
     {
       timestamps: false,

@@ -18,7 +18,10 @@ module.exports = {
       },
       url_image: {
         type: Sequelize.STRING(200),
-      }
+      },
+      description: {
+        type: Sequelize.STRING(1000),
+      },
     });
   },
 

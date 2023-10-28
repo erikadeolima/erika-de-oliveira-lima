@@ -1,3 +1,4 @@
+import { TCardProduct } from '@/components/CardProduct/CardProducts.types';
 import axios, { AxiosResponse } from 'axios';
 
 
@@ -28,8 +29,9 @@ const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-export const requestData = async (endpoint: string): Promise<any> => {
-  const { data }: AxiosResponse<any> = await api.get(endpoint);
+export const requestData = async (endpoint: string): Promise<TCardProduct[]> => {
+  const { data }: AxiosResponse<TCardProduct[]> = await api.get(endpoint);
+  console.log("data",data);
   return data;
 };
 

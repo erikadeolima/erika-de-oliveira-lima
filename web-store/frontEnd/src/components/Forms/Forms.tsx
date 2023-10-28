@@ -3,7 +3,8 @@ import { useForm, SubmitHandler  } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "../../styles/Register.module.css";
-import { registerUser } from "@/pages/api/service/userService";
+import { login, registerUser } from "@/pages/api/service/userService";
+import { useRouter } from 'next/router';
 
 export interface IFormPayload {
   name: string;
@@ -59,44 +60,47 @@ const schema = yup.object().shape({
 });
 
 export const Form= () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: {errors},
+    reset,
   } = useForm<IFormInput>({resolver: yupResolver(schema) as any});
 
   const subimtData = async (payload: IFormPayload) => {
       try {       
         const newUser = await registerUser(payload);
-        alert('Usuário criado com sucesso!');
       } catch (error: any) {
-        alert('Erro ao criar usuário, certifique-se de que  não possui uma conta');
+        console.log(error);
+        throw new Error('Erro ao criar usuário, certifique-se de que  não possui uma conta');
       }
-    
   }
 
   const onSubmit = async (data: IFormInput) => {
-    console.log(data);
     try {
       await schema.validate(data);
-      subimtData(data);
+      await subimtData(data);
+      login(data.email, data.password);
+      reset();
+      router.push("/home");
     } catch (error) {
-      console.log(error);
+      alert('Erro ao criar usuário, certifique-se de que  não possui uma conta');
     };
 
    };
 
   return (
       <form className={styles.form}onSubmit={handleSubmit(onSubmit)}>
-      <div>
-      <h4>Dados pessoais</h4>
+      <div className={styles.dados}>
+      <div className={styles.subTitle}><h4>Dados pessoais</h4></div>
       <div className={styles.campo}>
       <label className={styles.label}>Nome Completo</label>
       <p className={styles.error}>{errors?.name?.message}</p>   
       <input className={styles.input} {...register("name")} /> 
       </div>
       <div className={styles.campo}>
-      <label className={styles.label}>e-mail</label>
+      <label className={styles.label}>E-mail</label>
       <p className={styles.error}>{errors.email?.message}</p>
       <input className={styles.input} {...register("email")} />
       </div>
@@ -106,8 +110,9 @@ export const Form= () => {
       <input className={styles.input} {...register("phone")} />
       </div>
       </div>
-      <h4>Endereço</h4>
-      <div >
+      
+      <div className={styles.endereco}>
+      <div className={styles.subTitle}><h4>Endereço</h4></div>
       <div className={styles.campo}>
           <label className={styles.label}>CEP</label>
           <p className={styles.error}>{errors.zipcode?.message}</p>
@@ -135,7 +140,7 @@ export const Form= () => {
         </div>        
       </div>
 
-      <div>
+      <div className={styles.senha}>
       <div className={styles.campo}>
       <label className={styles.label}>Senha</label>
       <p className={styles.error}>{errors.password?.message}</p>
@@ -146,9 +151,9 @@ export const Form= () => {
       <label className={styles.label}>Confirme a Senha</label>
       <p className={styles.error}>{errors.confirmPassword?.message}</p>    
       <input type='password' className={styles.input} {...register("confirmPassword")} />
-     
       </div>
       </div>
+      <div className={styles.privacy}>
       <div className={styles.campo}>
       <div className={styles.campoV1}>
       <input type="checkbox" {...register("privacy")} />
@@ -156,7 +161,8 @@ export const Form= () => {
       </div>
      <div> <p className={styles.error}>{errors.privacy?.message}</p></div>
       </div>
-      <div><button className={styles.button} type="submit">Cadastar</button></div>
+      </div>
+      <div className={styles.buttonArea}><button className={styles.button} type="submit">Cadastar</button></div>
     </form>
   );
 };

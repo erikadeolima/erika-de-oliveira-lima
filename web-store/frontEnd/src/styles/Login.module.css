@@ -1,0 +1,105 @@
+.container {
+  min-height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  max-height: 300px;  
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: center;
+  background-color: #283350;
+}
+
+.loginTitle{
+  text-align: center;
+  margin-bottom: 1.3rem;
+  color: #ffb500;
+}
+
+.email{
+  display: flex;
+  height: 70px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f93800;
+  font-size: 0.7em;
+  height: 1rem;
+  margin-top: 0.3rem;
+}
+
+.register{
+  margin-top: 1rem;
+  text-align: center;
+  color: #030a1f;
+}
+
+.button {
+  margin: 0;
+  padding: .4rem 1.5rem;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  background-color: #ffb500;
+  color: #030a1f;
+}
+
+.input {
+  padding: .4rem 0.4rem;
+  background: none;
+  font: inherit;
+  color: #030a1f;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #d43d14;
+}
+
+@media (max-width: 767px) {
+  .container {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  .form {
+    height: 15rem;
+    max-width: 230px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  .form {
+    height: 15rem;
+    max-width: 230px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  .form {
+    height: 15rem;
+    max-width: 400px;
+  }
+}

@@ -1,0 +1,52 @@
+.CardProduct{
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  align-items: center;
+  background-color: white;
+}
+
+.heartIcon{
+  width: 1rem;
+  height: 1rem;
+  z-index: 5;
+  margin-left: 10rem;
+}
+
+.descriptionImg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} 
+
+.descriptionTxt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin:  0 0.5rem 0 0.5rem;
+  text-align: ceter;
+}
+
+.productShop{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+}
+
+.productShop > *{
+  margin-right: 0.2rem;
+}
+
+.productShop > *:nth-child(2){
+  margin-right: 1rem;
+}
+
+.productShop >:last-child{
+  margin-right: 0;
+}
