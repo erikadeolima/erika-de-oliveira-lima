@@ -5,3 +5,11 @@
   max-width: 1200px;
   margin: 1rem auto;
 }
+
+.error{
+  color: #283350;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem auto;
+  font-size: 100px;
+}

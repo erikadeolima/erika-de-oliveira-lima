@@ -12,6 +12,16 @@ const getAllProducts = async (_request, response, next) => {
   }
 }
 
+const getProductById = async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    const product = await productsService.getProductsById(id);
+    return response.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
+}
+
 const login = async (request, response, next) => {
   console.log('login');
   try {
@@ -50,6 +60,7 @@ const register = async (request, response, next) => {
 module.exports = {
   login,
   getAllProducts,
+  getProductById,
   getOrdersHistory,
   register
 };

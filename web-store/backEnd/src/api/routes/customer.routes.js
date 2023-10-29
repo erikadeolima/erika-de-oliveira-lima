@@ -8,5 +8,6 @@ customerRoute.post('/', customerController.login);
 customerRoute.post('/register', customerController.register);
 customerRoute.get('/home', customerController.getAllProducts);
 customerRoute.get('/myaccount', customerController.getOrdersHistory);
+customerRoute.get('/details/:id', customerController.getProductById);
 
 module.exports = customerRoute;

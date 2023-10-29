@@ -22,9 +22,9 @@ export type ContextType = {
   setCart: (cart: any) => void,
   order: TOrder,
   setOrder: (order: any) => void,
-  newItem: (TItem: any) => void,
-  getCartItem:() => TItem[] | null,
-  saveCartItem: (item: TItem[]) => void,
+  //newItem: (TItem: any) => void,
+  //getCartItem:() => TItem[] | null,
+  //saveCartItem: (item: TItem[]) => void,
 };
 
 export const ContextDefultValues: ContextType = {
@@ -38,7 +38,7 @@ export const ContextDefultValues: ContextType = {
   setCart: () => {},
   order: {id: '', name: '', price: 0, quantity: 0, subTotal: 0},
   setOrder: () => {},
-  newItem: () => {},
-  getCartItem: () => null,
-  saveCartItem: () => {},
+  //newItem: () => {},
+  //getCartItem: () => null,
+  //saveCartItem: () => {},
 }

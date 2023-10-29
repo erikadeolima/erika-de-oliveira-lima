@@ -1,30 +1,24 @@
+import { TCardProduct } from '@/components/CardProduct/CardProducts.types';
 import React, { useContext, useEffect, useState } from 'react';
-import { TCardProduct } from './CardProducts.types';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import styles from '../../styles/details.module.css';
 import { HiCurrencyDollar } from 'react-icons/hi';
-import { BsFillCartPlusFill, BsFillCartDashFill } from 'react-icons/bs';
-import Context from '@/Context/Context';
+import { BsFillCartDashFill, BsFillCartPlusFill } from 'react-icons/bs';
+import useProducts from '@/hooks/useProducts';
 import { TItem } from '@/Context/ContextTypes';
-import styles from '../../styles/CardProduct.module.css';
-import useProducts from '../../hooks/useProducts';
-import useServiceProducts from '@/pages/api/service/productsService';
-import Link from 'next/link';
+import Context from '@/Context/Context';
+import { useRouter } from 'next/router';
+import useServiceProducts from '../api/service/productsService';
 
-export default function CardProduct({ id, name, url_image, value} : TCardProduct) {
-const { total, cart, setTotal } = useContext(Context);
-const [favorite, setFavorite] = useState(false);
+const Details = () => {
+  const { total, cart, setTotal } = useContext(Context);
 const [item, setItem] = useState<TItem>({id: '', name: '', src: '', value: 0, quantity: 0, subTotal: 0});
 const [unity, setUnity] = useState(0);
 const {newItem} = useProducts();
-const {product, loading, error} = useServiceProducts().getAllProductsById(1);
-
-const favoriteProduct = () => {
-    if (!favorite) {
-        setFavorite(true);
-    } else {
-        setFavorite(false);
-    };
-};
+const router = useRouter();
+  const { id } = router.query;
+  const IDNumber = Number(id);
+  const {product, loading, error} = useServiceProducts().getAllProductsById(IDNumber);
+  const { id: IDProduct, name, url_image, value, description } = product;
 
 useEffect(() => {
     if (item.id) {
@@ -43,7 +37,7 @@ useEffect(() => {
 const addInCart = () => {
     setUnity(unity + 1);
     setItem({
-        id: id,
+        id: IDProduct,
         name: name,
         src: url_image,
         value: value,
@@ -56,7 +50,7 @@ const removeOfCart = () =>{
     if(unity > 0){
         setUnity(unity - 1);
     setItem({
-        id: id,
+        id: IDProduct,
         name: name,
         src: url_image,
         value: value,
@@ -68,30 +62,14 @@ const removeOfCart = () =>{
     }
 }
 
-return (
-    <>
-    <Link href={`/details/${id}`}>
-    <div className={styles.CardProduct}>
-        <div className={styles.heartIcon}>
-            {favorite ?
-                <i
-                    className={"FillHeart"}
-                    onClick={() => favoriteProduct()}>
-                    {< AiFillHeart />}
-                </i>
-                :
-                <i
-                    className={"OutlineHeart"}
-                    onClick={() => favoriteProduct()}>
-                    {<AiOutlineHeart />}
-                </i>
-            }
-        </div>
+  return (
+    <div className={styles.Product}>
         <div className={styles.descriptionImg}>
-            <img style={{height:'12rem', width:'10rem'}} src={url_image} alt={name} />
+            <img style={{height:'100%', width:'100%'}} src={url_image} alt={name} />
         </div>
         <div className={styles.descriptionTxt}>
             <p className={styles.name}>{name}</p>
+            <p className={styles.description}>{description}</p>
             <div className={styles.productShop}>
                 <HiCurrencyDollar className='cardIcon' />
                 <p>{value}</p>
@@ -101,7 +79,7 @@ return (
             </div>
         </div>
     </div>
-    </Link>
-    </>
-);
+  );
 };
+
+export default Details;

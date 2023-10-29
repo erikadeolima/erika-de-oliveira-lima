@@ -31,7 +31,6 @@ const api = axios.create({
 
 export const requestData = async (endpoint: string): Promise<TCardProduct[]> => {
   const { data }: AxiosResponse<TCardProduct[]> = await api.get(endpoint);
-  console.log("data",data);
   return data;
 };
 

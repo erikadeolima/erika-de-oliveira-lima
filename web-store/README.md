@@ -14,13 +14,13 @@ Antes de mais nada, gostaria de agradecer seu interesse no meu projeto. Agora vo
 
 cd web-store/backend
 
-npm install
+yarn install
 
-npm run db:reset
+yarn run db:reset
 
-npm run clear
+yarn run clear
 
-npm run dev
+yarn run dev
 
 Esses comandos garantem que o back end esteja funcionando.
 

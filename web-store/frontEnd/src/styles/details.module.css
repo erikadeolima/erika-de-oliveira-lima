@@ -1,0 +1,141 @@
+.Product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  background-color:white;
+}
+
+.descriptionImg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.descriptionTxt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.name{
+  display: flex;
+  height: 5rem;
+  align-items: center;
+}
+.description{
+  display: flex;
+  height: 5rem;
+  align-items: center;
+}
+.productShop{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .Product {
+    flex-direction: row;
+    width: 98%;
+    height: 20rem;
+  }
+  .descriptionImg{
+    height:5rem;
+    width:6rem;
+  }
+  .descriptionTxt{
+    height:5rem;
+    width:75%;
+  }
+  .name{
+    font-size: medium;
+  }
+  .description{
+    
+  }
+
+  .productShop {
+  }
+
+  .productShop > *{
+    margin-right: 0.5rem;
+    font-size: medium;
+  }
+  
+  .productShop > *:nth-child(2){
+    margin-right: 3.5rem;
+  }
+  
+  .productShop >:last-child{
+    margin-right: 0;
+  }
+}
+
+@media ( min-width: 768px and max-width: 1023) {
+  .Product {
+    flex-direction: row;
+    width: 98%;
+    height: 20rem;
+  }
+  .descriptionImg{
+    height:5rem;
+    width:6rem;
+  }
+  .descriptionTxt{
+    margin: 1rem;
+  }
+  .name{
+    font-size: xx-large;
+  }
+  .description{
+    
+  }
+
+  .productShop {
+  }
+
+  .productShop > *{
+  }
+  
+  .productShop > *:nth-child(2){
+  }
+  
+  .productShop >:last-child{
+  }
+}
+
+@media (min-width: 1024px) {
+  .Product {
+    flex-direction: row;
+    width: 98%;
+    height: 30rem;
+  }
+  .descriptionImg{
+    height:24rem;
+    width:24rem;
+  }
+  .descriptionTxt{
+    height:5rem;
+  }
+  .name{
+    font-size: xx-large;
+  }
+  .description{
+    
+  }
+
+  .productShop {
+  }
+
+  .productShop > *{
+  }
+  
+  .productShop > *:nth-child(2){
+  }
+  
+  .productShop >:last-child{
+  }
+}
