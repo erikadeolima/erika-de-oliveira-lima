@@ -1,29 +1,33 @@
-import { TCardProduct } from '@/components/CardProduct/CardProducts.types';
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../../styles/details.module.css';
 import { HiCurrencyDollar } from 'react-icons/hi';
 import { BsFillCartDashFill, BsFillCartPlusFill } from 'react-icons/bs';
 import useProducts from '@/hooks/useProducts';
-import { TItem } from '@/Context/ContextTypes';
 import Context from '@/Context/Context';
-import { useRouter } from 'next/router';
+
 import useServiceProducts from '../api/service/productsService';
+import Header from '@/components/Header/Header';
 
 const Details = () => {
-  const { total, cart, setTotal } = useContext(Context);
-const [item, setItem] = useState<TItem>({id: '', name: '', src: '', value: 0, quantity: 0, subTotal: 0});
+    const router = useRouter();
+    const { id } = router.query;
+    const productId = typeof id === 'string' ? id : '';
+    const { total, cart, setTotal, item, setItem } = useContext(Context);
+//const [item, setItem] = useState<TItem>({id: '', name: '', src: '', value: 0, quantity: 0, subTotal: 0});
 const [unity, setUnity] = useState(0);
-const {newItem} = useProducts();
-const router = useRouter();
-  const { id } = router.query;
-  const IDNumber = Number(id);
-  const {product, loading, error} = useServiceProducts().getAllProductsById(IDNumber);
-  const { id: IDProduct, name, url_image, value, description } = product;
+const {newItem, quantityInCart } = useProducts();
+const {
+    product, 
+    loading, 
+    error
+} = useServiceProducts().getAllProductsById(productId);
+const { id: IDProduct, name, src, value, description } = product;
 
 useEffect(() => {
-    if (item.id) {
-        newItem(item);
-    }
+        if (item.id) {
+                newItem(item);
+        }
 }, [item]);
 
 useEffect(() => {
@@ -39,7 +43,7 @@ const addInCart = () => {
     setItem({
         id: IDProduct,
         name: name,
-        src: url_image,
+        src: src,
         value: value,
         quantity: unity + 1,
         subTotal: value * (unity + 1)
@@ -52,7 +56,7 @@ const removeOfCart = () =>{
     setItem({
         id: IDProduct,
         name: name,
-        src: url_image,
+        src: src,
         value: value,
         quantity: unity -1,
         subTotal: value * (unity -1)
@@ -63,9 +67,11 @@ const removeOfCart = () =>{
 }
 
   return (
-    <div className={styles.Product}>
+    <>
+    <Header />
+    {loading ? (<></>):(<div className={styles.Product}>
         <div className={styles.descriptionImg}>
-            <img style={{height:'100%', width:'100%'}} src={url_image} alt={name} />
+            <img style={{height:'100%', width:'100%'}} src={src} alt={name} />
         </div>
         <div className={styles.descriptionTxt}>
             <p className={styles.name}>{name}</p>
@@ -74,11 +80,12 @@ const removeOfCart = () =>{
                 <HiCurrencyDollar className='cardIcon' />
                 <p>{value}</p>
                 < BsFillCartPlusFill className='addProduct' onClick={() => addInCart()} />
-                <p>{unity}</p>
+                <p>{quantityInCart(IDProduct)}</p>
                 <BsFillCartDashFill className='removeProduct' onClick={() => removeOfCart()}/>
             </div>
         </div>
-    </div>
+    </div>)}
+    </>
   );
 };
 

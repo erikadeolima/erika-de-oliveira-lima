@@ -1,16 +1,25 @@
 import React, { useContext, useState } from "react";
 import MyContext from "./Context";
-import { TOrder, TProduct, TItem } from "./ContextTypes";
+import { TProduct, TItem, TIsLogged } from "./ContextTypes";
 
 
 
 
 export default function MyProvider({ children }: { children: React.ReactNode }) {
-  const [ordersHistory, setOrdersHistory] = useState<TOrder[]>([]);
+  const [ordersHistory, setOrdersHistory] = useState<TItem[]>([]);
   const [products, setProducts] = useState<TProduct[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [cart, setCart] = useState<TItem[]>([]);
-  const [order, setOrder] = useState<TOrder>({id: '', name: '', price: 0, quantity: 0, subTotal: 0});
+  const [item, setItem] = useState<TItem>({
+    id: '',
+    name: '',
+    src: '',
+    value: 0,
+    quantity: 0,
+    subTotal: 0
+  });
+  const [unity, setUnity] = useState(0);
+  const [isLogged, setIsLogged] = useState<TIsLogged>({id: 0, name: '', email: '', address: '', city: '', state: '', zipcode: '', neighborhood: '', phone: '', isLogged: false});
 
   const context = {
     ordersHistory,
@@ -21,11 +30,12 @@ export default function MyProvider({ children }: { children: React.ReactNode }) 
     setTotal,
     cart,
     setCart,
-    order,
-    setOrder,
-    //newItem,
-    //getCartItem,
-    //saveCartItem,
+    item,
+    setItem,
+    isLogged,
+    setIsLogged,
+    //unity,
+    //setUnity,
   };
 
   return (

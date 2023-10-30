@@ -23,7 +23,6 @@ const getProductById = async (request, response, next) => {
 }
 
 const login = async (request, response, next) => {
-  console.log('login');
   try {
     const { email, password } = request.body;
     const userInfo = await userService.requestLogin(email, password);

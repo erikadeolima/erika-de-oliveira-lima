@@ -1,7 +1,5 @@
-import { TCardProduct } from '@/components/CardProduct/CardProducts.types';
+import { TProduct } from '../../Context/ContextTypes';
 import axios, { AxiosResponse } from 'axios';
-
-
 import { AxiosRequestConfig } from "axios";
 
 export interface IGet {
@@ -29,8 +27,8 @@ const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-export const requestData = async (endpoint: string): Promise<TCardProduct[]> => {
-  const { data }: AxiosResponse<TCardProduct[]> = await api.get(endpoint);
+export const requestData = async (endpoint: string): Promise<TProduct[]> => {
+  const { data }: AxiosResponse<TProduct[]> = await api.get(endpoint);
   return data;
 };
 

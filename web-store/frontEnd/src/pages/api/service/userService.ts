@@ -1,13 +1,15 @@
 import { IFormInput, IFormPayload } from '@/components/Forms/Forms';
 import { requestLogin, requestPost } from '../hello';
+import { TIsLogged } from '@/Context/ContextTypes';
 
+export type TUserInfo = { id: number, name: string, email: string, address: string, city: string, state: string, zipcode: string, neighborhood: string, phone: string } ;
 
-export const login = async (email: string, password: string): Promise<any> => {
+export const login = async (email: string, password: string): Promise<TUserInfo> => {
   const body = { email, password };
   try {
     const response = await requestLogin('/', body);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     return error;
   }
 };

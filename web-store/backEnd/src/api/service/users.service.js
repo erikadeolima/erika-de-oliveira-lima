@@ -24,8 +24,8 @@ const requestLogin = async (email, password) => {
   if (!user || !checkPassword(password, user.password)) {
     throw errorGenerate(404, 'Not found');
   }
-  const { id, name, pollenBalance } = user;
-  return { id, name, pollenBalance };
+  const { id, name, address, city, state, zipcode, neighborhood, phone } = user;
+  return { id, name, email, address, city, state, zipcode, neighborhood, phone };
 };
 
 const register = async (name, email, address, city, state, zipcode, neighborhood, phone, password) => {

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { TCardProduct } from './CardProducts.types';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { HiCurrencyDollar } from 'react-icons/hi';
@@ -10,13 +11,17 @@ import useProducts from '../../hooks/useProducts';
 import useServiceProducts from '@/pages/api/service/productsService';
 import Link from 'next/link';
 
-export default function CardProduct({ id, name, url_image, value} : TCardProduct) {
-const { total, cart, setTotal } = useContext(Context);
+export default function CardProduct({ id, name, src, value} : TCardProduct) {
+    const router = useRouter();
+const { total, cart, setTotal, item, setItem } = useContext(Context);
 const [favorite, setFavorite] = useState(false);
-const [item, setItem] = useState<TItem>({id: '', name: '', src: '', value: 0, quantity: 0, subTotal: 0});
+//const [item, setItem] = useState<TItem>({id: '', name: '', src: '', value: 0, quantity: 0, subTotal: 0});
 const [unity, setUnity] = useState(0);
-const {newItem} = useProducts();
-const {product, loading, error} = useServiceProducts().getAllProductsById(1);
+const {newItem, quantityInCart } = useProducts();
+
+const redirectToDetails = (id: string) => {
+    router.push(`/details/${id}`);
+  };
 
 const favoriteProduct = () => {
     if (!favorite) {
@@ -45,7 +50,7 @@ const addInCart = () => {
     setItem({
         id: id,
         name: name,
-        src: url_image,
+        src: src,
         value: value,
         quantity: unity + 1,
         subTotal: value * (unity + 1)
@@ -58,7 +63,7 @@ const removeOfCart = () =>{
     setItem({
         id: id,
         name: name,
-        src: url_image,
+        src: src,
         value: value,
         quantity: unity -1,
         subTotal: value * (unity -1)
@@ -70,7 +75,6 @@ const removeOfCart = () =>{
 
 return (
     <>
-    <Link href={`/details/${id}`}>
     <div className={styles.CardProduct}>
         <div className={styles.heartIcon}>
             {favorite ?
@@ -87,21 +91,22 @@ return (
                 </i>
             }
         </div>
+        <div onClick={() => redirectToDetails(id)}>
         <div className={styles.descriptionImg}>
-            <img style={{height:'12rem', width:'10rem'}} src={url_image} alt={name} />
+            <img style={{height:'12rem', width:'10rem'}} src={src} alt={name} />
         </div>
         <div className={styles.descriptionTxt}>
             <p className={styles.name}>{name}</p>
-            <div className={styles.productShop}>
-                <HiCurrencyDollar className='cardIcon' />
-                <p>{value}</p>
-                < BsFillCartPlusFill className='addProduct' onClick={() => addInCart()} />
-                <p>{unity}</p>
-                <BsFillCartDashFill className='removeProduct' onClick={() => removeOfCart()}/>
-            </div>
         </div>
-    </div>
-    </Link>
+        </div>
+        <div className={styles.productShop}>
+            <HiCurrencyDollar className='cardIcon' />
+            <p>{value}</p>
+            < BsFillCartPlusFill className='addProduct' onClick={() => addInCart()} />
+            <p>{quantityInCart(id)}</p>
+            <BsFillCartDashFill className='removeProduct' onClick={() => removeOfCart()}/>
+        </div>
+        </div>
     </>
 );
 };

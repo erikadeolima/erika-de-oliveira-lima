@@ -1,1 +1,1 @@
-export type TCardProduct= { id: string, name: string, url_image: string, value: number, description:string }
+export type TCardProduct= { id: string, name: string, src: string, value: number, description:string }

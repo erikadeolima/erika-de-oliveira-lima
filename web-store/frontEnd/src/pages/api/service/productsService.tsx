@@ -2,6 +2,7 @@ import { TCardProduct } from '@/components/CardProduct/CardProducts.types';
 import { requestData } from '../hello';
 import { AxiosResponse } from 'axios';
 import { useState, useEffect } from 'react';
+import { TItem, TProduct } from '@/Context/ContextTypes';
 
 
 interface MyError {
@@ -10,7 +11,7 @@ interface MyError {
 
 const useServiceProducts = () => {
   const getAllProducts = () => {
-    const [products, setProducts] = useState<TCardProduct[]>([]);
+    const [products, setProducts] = useState<TProduct[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
   
@@ -31,8 +32,8 @@ const useServiceProducts = () => {
   
     return { products, loading, error };
   };
-  const getAllProductsById = (id:number) => {
-    const [product, setProduct] = useState<TCardProduct[]>([]);
+  const getAllProductsById = (id:string) => {
+    const [product, setProduct] = useState<TProduct>({id: '', name: '', src: '', value: 0, description: ''});
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
   
@@ -40,7 +41,20 @@ const useServiceProducts = () => {
       const fetchProducts = async () => {
         try {  
           const response = await requestData(`/details/${id}`);
-          setProduct(response);
+          const { 
+            id: IDNumber, 
+            name, 
+            src, 
+            value, 
+            description 
+          } = response;
+          setProduct({ 
+            id: IDNumber, 
+            name, 
+            src, 
+            value, 
+            description 
+          });
           setLoading(false);
         } catch (error) {
           setError(error as any);

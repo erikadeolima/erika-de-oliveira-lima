@@ -6,6 +6,8 @@ import { Button } from "@/components/Button/Button";
 import { useRouter } from 'next/router';
 import styles from '../styles/Login.module.css';
 import { login } from "./api/service/userService";
+import { useContext } from "react";
+import Context from "@/Context/Context";
 
 const schema = yup.object().shape({
   email: yup.string()
@@ -28,14 +30,24 @@ export default function Login() {
   const { register, handleSubmit, formState: { errors}, reset } = useForm({
     resolver: yupResolver(schema),
   });
+  const { isLogged, setIsLogged } = useContext(Context);
   const onSubmitHandler = async (data:any, event:any) => {
     event.preventDefault();
     try {
-      login(data.email, data.password);
+      const userInfo = await login(data.email, data.password);
+      const { id, name, email, address, city, state, zipcode, neighborhood, phone } = userInfo;
       reset();
+      localStorage.setItem("isLogged", JSON.stringify({
+        id, name, isLogged: true,
+      }));
+      setIsLogged({
+        id, name,email, address, city, state, zipcode, neighborhood, phone, isLogged: true,
+      });
       router.push("/home");
     } catch (error) {
       console.log(error);
+      localStorage.clear();
+      setIsLogged({...isLogged, isLogged: false});
       errors.password = { type: "required", message: "Email ou senha inválidos" };
     }
   };

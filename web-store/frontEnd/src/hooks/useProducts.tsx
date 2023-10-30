@@ -9,7 +9,6 @@ const useProducts = () =>{
     if (cartItemString === null) {
       return null; 
     }
-
     const cartItems = JSON.parse(cartItemString);
     return cartItems;
   };
@@ -47,11 +46,23 @@ const useProducts = () =>{
       saveCartItem(getCartProducts);
     }
   };
+
+  const quantityInCart = (productId: string)=> {
+    const cartItemString = localStorage.getItem('cart');
+    if (cartItemString !== null) {
+        const cart = JSON.parse(cartItemString);
+        const itemEncontrado = cart.find((item: { id: string; }) => item.id === productId);
+        return itemEncontrado ? itemEncontrado.quantity : 0;
+    } else {
+        return 0;
+    }
+}
   return {
     newItem,
     getCartItem,
     saveCartItem,
     removeCartStorage,
+    quantityInCart,
   }
 };
 

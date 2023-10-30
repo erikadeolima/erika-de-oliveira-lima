@@ -3,6 +3,7 @@ import { Form } from "@/components/Forms/Forms";
 import { Button } from "@/components/Button/Button";
 import { useRouter } from "next/router";
 import styles from "@/styles/Register.module.css";
+import Header from "@/components/Header/Header";
 
 export default function Register () {
   const router = useRouter()
@@ -12,6 +13,8 @@ export default function Register () {
   }
 
   return (
+    <>
+    <Header />
     <div className={styles.container}>
       <div >
       <Form />
@@ -21,5 +24,6 @@ export default function Register () {
     <Button className={styles.button} name="Login" action={() => goToLogin()} enable={true} />
     </div>
     </div>
+    </>
   );
 };
