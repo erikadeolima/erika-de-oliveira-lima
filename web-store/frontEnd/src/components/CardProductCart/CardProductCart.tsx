@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { TCardProduct } from './CardProducts.types';
+import { TCardProduct } from './CardProductsCart.types';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { HiCurrencyDollar } from 'react-icons/hi';
 import { BsFillCartPlusFill, BsFillCartDashFill } from 'react-icons/bs';
 import Context from '@/Context/Context';
-import styles from '../../styles/CardProduct.module.css';
+import styles from '../../styles/CardProductCart.module.css';
 import useProducts from '../../hooks/useProducts';
 
 
-export default function CardProduct({ id, name, url_image, value} : TCardProduct) {
+export default function CardProductCart({ id, name, url_image, value} : TCardProduct) {
     const router = useRouter();
 const { total, cart, setTotal, item, setItem } = useContext(Context);
 const [favorite, setFavorite] = useState(false);
+//const [item, setItem] = useState<TItem>({id: '', name: '', url_image: '', value: 0, quantity: 0, subTotal: 0});
 const [unity, setUnity] = useState(0);
 const {newItem, quantityInCart } = useProducts();
 
