@@ -1,9 +1,6 @@
 
 @media (min-width: 768px) {
   .header {
-    display: flex;
-    background-color: #283350;
-    color: #ffb500;
     height: 5rem;
     margin: 0 0 0 0;
   }
@@ -22,9 +19,8 @@
 
 @media (max-width: 767px) {
   .header {
-    display: block;
-    background-color: #283350;
-    color: #ffb500;
+    height: 7%;
+    margin: 0 0 0 0;
   }
 
   .section {
@@ -33,4 +29,14 @@
     font-size: medium;
     cursor: pointer;
   }
+}
+
+.header{
+  position: fixed;
+  display: flex;
+  top: 0; 
+  width: 100%;
+  z-index: 1000;
+  background-color: #283350;
+  color: #ffb500;
 }

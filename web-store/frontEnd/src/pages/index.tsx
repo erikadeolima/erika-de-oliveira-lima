@@ -8,6 +8,7 @@ import styles from '../styles/Login.module.css';
 import { login } from "./api/service/userService";
 import { useContext } from "react";
 import Context from "@/Context/Context";
+import { setUserInfo } from "@/utils/userInfo";
 
 const schema = yup.object().shape({
   email: yup.string()
@@ -37,9 +38,7 @@ export default function Login() {
       const userInfo = await login(data.email, data.password);
       const { id, name, email, address, city, state, zipcode, neighborhood, phone } = userInfo;
       reset();
-      localStorage.setItem("isLogged", JSON.stringify({
-        id, name, isLogged: true,
-      }));
+      setUserInfo({id, name, isLogged: true});
       setIsLogged({
         id, name,email, address, city, state, zipcode, neighborhood, phone, isLogged: true,
       });

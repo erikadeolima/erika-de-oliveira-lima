@@ -1,13 +1,13 @@
 export type TProduct= { 
   id: string,
   name: string,
-  src: string,
+  url_image: string,
   value: number
   description: string,
 }
 
-export type TItem = Omit<TProduct, 'src' | 'description'> & {
-  src?: string,
+export type TItem = Omit<TProduct, 'url_image' | 'description'> & {
+  url_image?: string,
   quantity: number,
   subTotal: number
 };

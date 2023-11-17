@@ -22,7 +22,9 @@ const {
     loading, 
     error
 } = useServiceProducts().getAllProductsById(productId);
-const { id: IDProduct, name, src, value, description } = product;
+const { id: IDProduct, name, url_image, value, description } = product;
+
+console.log(product);
 
 useEffect(() => {
         if (item.id) {
@@ -43,7 +45,7 @@ const addInCart = () => {
     setItem({
         id: IDProduct,
         name: name,
-        src: src,
+        url_image: url_image,
         value: value,
         quantity: unity + 1,
         subTotal: value * (unity + 1)
@@ -56,7 +58,7 @@ const removeOfCart = () =>{
     setItem({
         id: IDProduct,
         name: name,
-        src: src,
+        url_image: url_image,
         value: value,
         quantity: unity -1,
         subTotal: value * (unity -1)
@@ -71,7 +73,7 @@ const removeOfCart = () =>{
     <Header />
     {loading ? (<></>):(<div className={styles.Product}>
         <div className={styles.descriptionImg}>
-            <img style={{height:'100%', width:'100%'}} src={src} alt={name} />
+            <img style={{height:'100%', width:'100%'}} src={`${url_image}`} alt={name} />
         </div>
         <div className={styles.descriptionTxt}>
             <p className={styles.name}>{name}</p>

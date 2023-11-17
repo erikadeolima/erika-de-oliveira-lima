@@ -1,26 +1,38 @@
 import Context from '@/Context/Context';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import styles from '../../styles/header.module.css';
+import { getUserInfo } from '../../utils';
 
 const Header = () => {
+  const [user, setUser] = useState({id: 0, name: '', isLogged: false});
   const {isLogged, setIsLogged} = useContext(Context);
   const router = useRouter();
-  const { name: usuario } = isLogged;
   const onLogout = () => {
     setIsLogged({id: 0, name: '', email: '', address: '', city: '', state: '', zipcode: '', neighborhood: '', phone: '', isLogged: false});
     localStorage.clear();
     router.push('/');
   };
+
+ useEffect(()=>{
+    const getLoggedUser = async () => {
+      const user = await getUserInfo();
+      if(user){
+        setUser(user);
+      }
+    }
+    getLoggedUser();
+  },[]);
+
   const goHome = () => {
-    if(usuario){
+    if(user.isLogged){
       router.push('/home');
     }else{
       router.push('/');
     }
   };
   const goCart = () => {
-    if(usuario){
+    if(user.isLogged){
       //router.push('/cart');
       return;
     }else{
@@ -28,7 +40,7 @@ const Header = () => {
     }
   };
   const toLogin = () => {
-    if(!usuario){
+    if(!user.isLogged){
       router.push('/');
     }else{
       return;
@@ -37,9 +49,9 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.session} onClick={goHome}>Home</div>
-      <div className={styles.session} onClick={toLogin}>{usuario ? usuario : 'Login'}</div>
-      {usuario && <div className={styles.session} onClick={goCart}>Cart</div>}
-      {usuario && <div className={styles.session} onClick={onLogout}>Logout</div>}
+      <div className={styles.session} onClick={toLogin}>{user.isLogged ? user.name : 'Login'}</div>
+      {user && <div className={styles.session} onClick={goCart}>Cart</div>}
+      {user && <div className={styles.session} onClick={onLogout}>Logout</div>}
     </div>
   );
 };

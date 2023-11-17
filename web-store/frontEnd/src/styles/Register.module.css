@@ -6,7 +6,7 @@
 }
 
 .subTitle{
-  color: #ffb500;
+  color: #FFFFFF;
   font-size: 30px;
 }
 
@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #ffb500;
+  color: #FFFFFF;
   margin-top: 0.5rem;
 }
 .campoV1{
@@ -43,7 +43,7 @@
   font: inherit;
   margin-bottom: 0.5rem;
   border-radius: 0.5rem;
-  background-color: #d43d14;
+  background-color: #FFFFFF;
 }
 .error {
   display: flex;
@@ -86,7 +86,7 @@
   outline: inherit;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
-  background-color: #ffb500;
+  background-color: #FFA500;
   color: #030a1f;
 }
 
