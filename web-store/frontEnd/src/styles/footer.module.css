@@ -1,15 +1,40 @@
 .footer {
+  position: absolute;
+  width: 100%;
+  margin-top: 20%;
+  height: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #333;
   color: white;
-  padding: 20px;
+  z-index: 6;
 }
 
-.column {
-  flex: 1;
-  text-align: center;
+.logo{
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+
+}
+
+.conatiner{
+  display: flex;
+  flex-direction: column;
+}
+
+.slogan{
+  display: flex;
+  flex-direction: row;
+}
+
+.area1{
+  display: flex;
+  flex-direction: column;
+}
+.area2{
+  display: flex;
+  flex-direction: row;
 }
 
 .headding {
@@ -21,11 +46,15 @@
 }
 
 .navigation {
+  display: flex;
+  flex-direction: row;
   list-style: none;
   padding: 0;
   margin-bottom: 8px;
   color: white;
   text-decoration: none;
+  color: inherit;
+  gap: 200px;
 }
 
 .socialInfo {
@@ -34,6 +63,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
-  padding: 0.05%;
+  margin-left: 10px;
+  gap:1rem;
 }
+
+/* @media (max-width: 767px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    width: 105vh;
+    margin-top: 30vh;
+    font-size: 5vh;
+  }
+
+  .navigation {
+    flex-direction: row;
+    gap: 1vh;
+  }
+} */

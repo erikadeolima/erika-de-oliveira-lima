@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "@/components/Forms/Forms";
+import { Forms } from "@/components/Forms/Forms";
 import { Button } from "@/components/Button/Button";
 import { useRouter } from "next/router";
 import styles from "@/styles/Register.module.css";
@@ -14,10 +14,9 @@ export default function Register () {
 
   return (
     <>
-    <Header />
     <div className={styles.container}>
       <div >
-      <Form />
+      <Forms />
     </div>
     <div className={styles.login}>
     <h4 >Já possui cadastro? Faça seu Login</h4>

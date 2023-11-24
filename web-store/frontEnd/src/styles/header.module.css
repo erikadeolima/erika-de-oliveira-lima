@@ -5,14 +5,14 @@
     margin: 0 0 0 0;
   }
 
-  .section {
+  .session {
     flex: 1;
     text-align: center;
-    font-size: x-large;
+    font-size: xx-large;
     cursor: pointer;
   }
 
-  .section:first-child {
+  .session:first-child {
     flex: 0.6;
   }
 }
@@ -23,8 +23,7 @@
     margin: 0 0 0 0;
   }
 
-  .section {
-    width: 100%;
+  .session {
     text-align: center;
     font-size: medium;
     cursor: pointer;
@@ -39,4 +38,15 @@
   z-index: 1000;
   background-color: #283350;
   color: #ffb500;
+}
+
+
+.session{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+  font-size: xx-large;
+  cursor: pointer;
 }

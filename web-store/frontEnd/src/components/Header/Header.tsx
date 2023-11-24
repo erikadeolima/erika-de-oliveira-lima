@@ -10,7 +10,7 @@ const Header = () => {
   const router = useRouter();
   const onLogout = () => {
     setIsLogged({id: 0, name: '', email: '', address: '', city: '', state: '', zipcode: '', neighborhood: '', phone: '', isLogged: false});
-    localStorage.clear();
+    localStorage.removeItem('isLogged');
     router.push('/');
   };
 
@@ -31,14 +31,15 @@ const Header = () => {
       router.push('/');
     }
   };
+
   const goCart = () => {
     if(user.isLogged){
-      //router.push('/cart');
-      return;
+      router.push('/cart');
     }else{
       router.push('/');
     }
   };
+
   const toLogin = () => {
     if(!user.isLogged){
       router.push('/');
@@ -46,10 +47,24 @@ const Header = () => {
       return;
     }
   };
+
+  const toAccount = () => {
+    router.push('/account');
+  };
+
+  const redirect = () =>{
+    console.log(user);
+    if(user.isLogged){
+      router.push('/account');
+    }else{
+      router.push('/login');
+    }
+  }
+  
   return (
     <div className={styles.header}>
       <div className={styles.session} onClick={goHome}>Home</div>
-      <div className={styles.session} onClick={toLogin}>{user.isLogged ? user.name : 'Login'}</div>
+      <div className={styles.session} onClick={redirect}>{user.isLogged ? `Minha Conta - ${user.name}` : 'Login'}</div>
       {user && <div className={styles.session} onClick={goCart}>Cart</div>}
       {user && <div className={styles.session} onClick={onLogout}>Logout</div>}
     </div>

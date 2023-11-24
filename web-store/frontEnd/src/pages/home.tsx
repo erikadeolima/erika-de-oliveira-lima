@@ -11,9 +11,6 @@ import Footer from "@/components/Footer/Footer";
 export default function Home () {
   const {products, loading, error} = useServiceProducts().getAllProducts();
   return (
-    <main>
-      <Header />
-      <Banner />
       <div className={styles.homeContainer}>
       {error ? <div className={styles.error}><p>Erro ao carregar os produtos:</p><p>Verifique o serviço de back-end</p><p>E atualize a pagina</p></div> : <div className={styles.products}>
       {products.map((product) => (
@@ -30,7 +27,5 @@ export default function Home () {
       }
     </div>}
       </div>
-      <Footer />
-    </main>
   )
 }

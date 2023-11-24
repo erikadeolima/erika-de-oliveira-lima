@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler  } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -59,22 +59,32 @@ const schema = yup.object().shape({
   privacy: yup.bool().oneOf([true], "Campo obrigatório"),
 });
 
-export const Form= () => {
+export const Forms= ({ dadosIniciais }: { dadosIniciais?: Omit<IFormInput, 'password' | 'confirmPassword' | 'privacy'> }) => {
+  console.log(dadosIniciais);
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: {errors},
     reset,
+    setValue,
   } = useForm<IFormInput>({resolver: yupResolver(schema) as any});
 
+  useEffect(() => {
+    if (dadosIniciais) {
+      Object.entries(dadosIniciais).forEach(([key, value]) => {
+        setValue(key as keyof IFormInput, value);
+      });
+    }
+  }, [setValue, dadosIniciais]);
+
   const subimtData = async (payload: IFormPayload) => {
-      try {       
-        const newUser = await registerUser(payload);
-      } catch (error: any) {
-        console.log(error);
-        throw new Error('Erro ao criar usuário, certifique-se de que  não possui uma conta');
-      }
+    try {       
+      const newUser = await registerUser(payload);
+    } catch (error: any) {
+      console.log(error);
+      throw new Error('Erro ao criar usuário, certifique-se de que não possui uma conta');
+    }
   }
 
   const onSubmit = async (data: IFormInput) => {

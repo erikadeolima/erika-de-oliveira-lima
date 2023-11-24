@@ -1,0 +1,79 @@
+.CardProduct{
+  display: flex;
+  width: 200vh;
+  height: 10rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  background-color: white;
+  justify-content: space-around;
+}
+
+.heartIcon{
+  width: 1rem;
+  height: 1rem;
+  z-index: 5;
+  margin-left: 10rem;
+}
+
+.descriptionImg{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 1rem;
+  width: 50%;
+} 
+
+.name{
+  display: flex;
+  height: 5rem;
+  align-items: center;
+  font-size: x-large;
+}
+
+.productShop{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5rem;
+}
+
+.productShop > *{
+  margin-right: 0.2rem;
+}
+
+.productShop > *:nth-child(2){
+  margin-right: 1rem;
+}
+
+.productShop >:last-child{
+  margin-right: 0;
+}
+
+.value{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-size: x-large;
+}
+
+.cartInteraction{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-size: x-large;
+}
+
+.removeCart{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}

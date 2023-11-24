@@ -14,7 +14,7 @@ export default function CardProduct({ id, name, url_image, value} : TCardProduct
 const { total, cart, setTotal, item, setItem } = useContext(Context);
 const [favorite, setFavorite] = useState(false);
 const [unity, setUnity] = useState(0);
-const {newItem, quantityInCart } = useProducts();
+const {newItem, quantityInCart, addInCart, removeOfCart } = useProducts();
 
 const redirectToDetails = (id: string) => {
     router.push(`/details/${id}`);
@@ -41,34 +41,6 @@ useEffect(() => {
         setTotal(totalValue);
     };
 }, [cart, total, setTotal]);
-
-const addInCart = () => {
-    setUnity(unity + 1);
-    setItem({
-        id: id,
-        name: name,
-        url_image: url_image,
-        value: value,
-        quantity: unity + 1,
-        subTotal: value * (unity + 1)
-    });
-};
-
-const removeOfCart = () =>{
-    if(unity > 0){
-        setUnity(unity - 1);
-    setItem({
-        id: id,
-        name: name,
-        url_image: url_image,
-        value: value,
-        quantity: unity -1,
-        subTotal: value * (unity -1)
-    });
-    } else {
-        return;
-    }
-}
 
 return (
     <>
@@ -99,9 +71,9 @@ return (
         <div className={styles.productShop}>
             <HiCurrencyDollar className='cardIcon' />
             <p>{value}</p>
-            < BsFillCartPlusFill className='addProduct' onClick={() => addInCart()} />
+            < BsFillCartPlusFill className='addProduct' onClick={() => addInCart({ id, name, url_image, value} )} />
             <p>{quantityInCart(id)}</p>
-            <BsFillCartDashFill className='removeProduct' onClick={() => removeOfCart()}/>
+            <BsFillCartDashFill className='removeProduct' onClick={() => removeOfCart({ id, name, url_image, value} )}/>
         </div>
         </div>
     </>

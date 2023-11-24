@@ -13,7 +13,7 @@ export default function MyProvider({ children }: { children: React.ReactNode }) 
   const [item, setItem] = useState<TItem>({
     id: '',
     name: '',
-    src: '',
+    url_image: '',
     value: 0,
     quantity: 0,
     subTotal: 0
