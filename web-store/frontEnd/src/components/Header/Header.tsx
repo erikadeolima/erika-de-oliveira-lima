@@ -53,7 +53,6 @@ const Header = () => {
   };
 
   const redirect = () =>{
-    console.log(user);
     if(user.isLogged){
       router.push('/account');
     }else{

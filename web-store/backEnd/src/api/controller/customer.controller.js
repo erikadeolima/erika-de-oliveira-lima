@@ -45,11 +45,26 @@ const getOrdersHistory = async (_request, response, next) => {
 
 const register = async (request, response, next) => {
   try {
-    const { name, email, address, city, state, zipcode, neighborhood, phone, privacy } = request.body;
+    const { id, name, email, address, city, state, zipcode, neighborhood, phone } = req.body;
     const encrypt = generatePassword(request.body.password);
 
     const password = encrypt
-    const newUser = await userService.register(name, email, address, city, state, zipcode, neighborhood, phone, password, privacy);
+    const updateUser = await userService.update(id, name, email, address, city, state, zipcode, neighborhood, phone, password);
+    return response.status(201).json(updateUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const update = async (request, response, next) => {
+  try {
+    const { id, name, email, address, city, state, zipcode, neighborhood, phone } = request.body;
+    const encryptOlder = generatePassword(request.body.currentPassword);
+    const encryptNew = generatePassword(request.body.password);
+
+    const password = encryptOlder;
+    const newPassword = encryptNew;
+    const newUser = await userService.update(id, name, email, address, city, state, zipcode, neighborhood, phone, password, newPassword);
     return response.status(201).json(newUser);
   } catch (error) {
     next(error);
@@ -61,5 +76,6 @@ module.exports = {
   getAllProducts,
   getProductById,
   getOrdersHistory,
-  register
+  register,
+  update
 };

@@ -39,8 +39,28 @@ const register = async (name, email, address, city, state, zipcode, neighborhood
   }
 };
 
+const update = async (id, name, email, address, city, state, zipcode, neighborhood, phone, password, newPassword) => {
+  try {
+    const user = await User.findByPk(id);
+
+    if (!user || password !== user.password) {
+      throw errorGenerate(500, 'Senha atual inválida.');
+    }
+
+    if (newPassword === user.password) {
+      throw errorGenerate(500, 'A nova senha deve ser diferente da senha atual.');
+    }
+    const updateUser = await User.update({ name, email, address, city, state, zipcode, neighborhood, phone, newPassword, privacy: true }, { where: { id } });
+    return updateUser;
+  } catch (error) {
+    console.log(error);
+    throw errorGenerate(error.status, error.message);
+  }
+};
+
 module.exports = {
   findUserByName,
   register,
-  requestLogin
+  requestLogin,
+  update
 };

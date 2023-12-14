@@ -44,7 +44,6 @@ export default function Login() {
       });
       router.push("/home");
     } catch (error) {
-      console.log(error);
       localStorage.clear();
       setIsLogged({...isLogged, isLogged: false});
       errors.password = { type: "required", message: "Email ou senha inválidos" };
