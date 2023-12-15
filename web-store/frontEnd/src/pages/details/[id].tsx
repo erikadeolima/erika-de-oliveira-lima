@@ -21,13 +21,13 @@ const {
     product, 
     loading, 
     error
-} = useServiceProducts().getAllProductsById(productId);
+} = useServiceProducts().getProductsById(productId);
 const { id: IDProduct, name, url_image, value, description } = product;
 
 useEffect(() => {
-        if (item.id) {
-                newItem(item);
-        }
+    if (item.id) {
+            newItem(item);
+    }
 }, [item]);
 
 useEffect(() => {

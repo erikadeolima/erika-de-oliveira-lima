@@ -41,3 +41,15 @@ OUUU `cd web-store/frontEnd && yarn install && yarn run clear && yarn run dev`
 Esses comandos garantem que o fron-end esteja funcioando corretamente no endereço 'http://localhost:3000'
 
 Com ambas aplicações funcionando, pode usar a aplicação do front-end no endereço indicado (http://localhost:3000), da forma como preferir.
+
+Para logar, sinta-se a vontade para criar uma conta, ou utilize a conta padrão:
+
+--> email: erika.castro@tester.com
+--> senha: AfroReact2023
+
+Aqui um resumo do que pode ser feito de acordo com as rotas:
+
+--> / - É possivel realizar seu login, ou navegar para a proxima rota e realizar seu cadastro;
+--> /register - É possivel realizar seu cadastro
+--> /home - tem acesso a todos os produtos da loja. É possivel favoritar, acrescentar e retirar do carrinho de forma dinâmica, ou ate mesmo navegar para a pagina do produto para poder visualizar mais detalhes.
+--> /details/{id} - acessa a pagina de detalhe de cada produto, de forma individual, também acrescentar e retirar do carrinho de forma dinâmica

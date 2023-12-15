@@ -27,8 +27,13 @@ const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-export const requestData = async (endpoint: string): Promise<TProduct[]> => {
+export const requestAllData = async (endpoint: string): Promise<TProduct[]> => {
   const { data }: AxiosResponse<TProduct[]> = await api.get(endpoint);
+  return data;
+};
+
+export const requestData = async (endpoint: string): Promise<TProduct> => {
+  const { data }: AxiosResponse<TProduct> = await api.get(endpoint);
   return data;
 };
 

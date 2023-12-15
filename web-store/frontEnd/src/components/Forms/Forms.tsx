@@ -196,7 +196,7 @@ export const Forms = ({ dadosIniciais }: { dadosIniciais?: Omit<IFormInput, 'pas
       </div>
 
       <div className={styles.senha}>
-      {isLogged ? (<>
+      {isLogged.isLogged ? (<>
       <div className={styles.campo}>
       <label className={styles.label}>Senha Atual</label>
       <p className={styles.error}>{errors.password?.message}</p>
@@ -231,7 +231,7 @@ export const Forms = ({ dadosIniciais }: { dadosIniciais?: Omit<IFormInput, 'pas
       
       <div className={styles.privacy}>
       <div className={styles.campo}>
-      {isLogged ? null : <div className={styles.campoV1}>
+      {isLogged.isLogged ? null : <div className={styles.campoV1}>
       <input type="checkbox" {...register("privacy")} />
       <label className={styles.labelV1}>Aceito as politicas de privacidade</label>
       </div>}
@@ -241,7 +241,7 @@ export const Forms = ({ dadosIniciais }: { dadosIniciais?: Omit<IFormInput, 'pas
       <p className={styles.error}>{errors.privacy?.message}</p></div>
       </div>
       </div>
-      <div className={styles.buttonArea}><button className={styles.button} type="submit">{isLogged ? "Alterar dados" : "Cadastrar"}</button></div>
+      <div className={styles.buttonArea}><button className={styles.button} type="submit">{isLogged.isLogged ? "Alterar dados" : "Cadastrar"}</button></div>
     </form>
   );
 };

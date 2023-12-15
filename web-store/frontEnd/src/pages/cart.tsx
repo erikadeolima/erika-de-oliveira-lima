@@ -23,8 +23,10 @@ export default function Cart () {
   };
 
   useEffect(() => {}, [products]);
-  return (<div className={styles.container}>
-  <div className={styles.CartContainer}>
+  return (
+  <div className={styles.container}>
+    <div className={styles.cartList}>
+    <div className={styles.CartContainer}>
       {total !== 0 ? (
         <div className={styles.productsCart}>
           {products.map((product) => (
@@ -43,6 +45,7 @@ export default function Cart () {
         </div>):(<div className={styles.container} onClick={()=>toLogin()}><p className={styles.error
         }>Carrinho vazio ! </p><p className={styles.error}>Faça suas compras!</p></div>)}
       </div>
+    </div>
       {total !== 0 ? (<div className={styles.CartInfo}><CardCartInfo /></div>):(<></>)}
   </div>
   )

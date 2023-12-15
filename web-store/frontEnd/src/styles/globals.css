@@ -1,10 +1,11 @@
 body {
+  margin: 0;
+  padding: 0;
+  max-width: 98%;
   font-size: 16px;
   background-color: #1F3A93;
   text-decoration: none;
   color: inherit;
-  justify-content: center;
-  align-items: center;
 }
 
 @media (max-width: 767px) {

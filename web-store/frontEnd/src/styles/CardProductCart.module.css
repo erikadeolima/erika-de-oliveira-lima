@@ -1,11 +1,12 @@
 .CardProduct{
   display: flex;
-  width: 200vh;
-  height: 10rem;
+  width: 180%;
+  /* height: 1%; */
   border-radius: 0.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   background-color: white;
   justify-content: space-around;
+  margin-bottom: 16px;
 }
 
 .heartIcon{

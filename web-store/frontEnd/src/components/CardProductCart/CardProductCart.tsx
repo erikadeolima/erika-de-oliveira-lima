@@ -42,7 +42,7 @@ return (
     <>
     {quantityInCart(id) === 0 ? (<></>): (<div className={styles.CardProduct}>
         <div className={styles.descriptionImg} onClick={() => redirectToDetails(id)}>
-            <img style={{height:'18vh', width:'16vh'}} src={url_image} alt={name} />
+            <img style={{height:'10vh', width:'16vh'}} src={url_image} alt={name} />
             <p className={styles.name}>{name}</p>
         </div>
         <div className={styles.productShop}>
