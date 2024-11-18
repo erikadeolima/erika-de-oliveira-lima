@@ -50,6 +50,7 @@ const register = async (request, response, next) => {
 
     const password = encrypt
     const updateUser = await userService.update(id, name, email, address, city, state, zipcode, neighborhood, phone, password);
+    console.log(`🐞 ~ file: customer.controller.js:53 ~ register ~ updateUser:`, updateUser)
     return response.status(201).json(updateUser);
   } catch (error) {
     next(error);

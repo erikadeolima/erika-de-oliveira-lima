@@ -8,7 +8,7 @@ import styles from '../styles/Login.module.css';
 import { login } from "./api/service/userService";
 import { useContext } from "react";
 import Context from "@/Context/Context";
-import { setUserInfo } from "@/utils/userInfo";
+import { setUserInfo, verifyJWTToken } from "@/utils/userInfo";
 
 const schema = yup.object().shape({
   email: yup.string()
@@ -36,11 +36,23 @@ export default function Login() {
     event.preventDefault();
     try {
       const userInfo = await login(data.email, data.password);
-      const { id, name, email, address, city, state, zipcode, neighborhood, phone } = userInfo;
+      const decodedUserInfo = verifyJWTToken(userInfo);
+      const { id, name, email, address, city, state, zipcode, neighborhood, phone } = decodedUserInfo || {};
+
+      console.log(decodedUserInfo);
       reset();
-      setUserInfo({id, name, isLogged: true});
+      setUserInfo({ id: id as number, name: name ?? '', isLogged: true });
       setIsLogged({
-        id, name,email, address, city, state, zipcode, neighborhood, phone, isLogged: true,
+        id: id as number,
+        name: name ?? '',
+        email: email ?? '',
+        address: address ?? '',
+        city: city ?? '',
+        state: state ?? '',
+        zipcode: zipcode ?? '',
+        neighborhood: neighborhood ?? '',
+        phone: phone ?? '',
+        isLogged: true,
       });
       router.push("/home");
     } catch (error) {

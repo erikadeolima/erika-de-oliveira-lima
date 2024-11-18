@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
 const { User } = require('../../database/models');
 const errorGenerate = require('../helper/errorGenerate');
-const { checkPassword } = require('../helper/bycrypt');
+const { checkPassword, generateJWTToken } = require('../helper/bycrypt');
 
 const findUserByName = async (name) => {
   const user = await User.findOne({ where: { name } });
@@ -25,7 +25,9 @@ const requestLogin = async (email, password) => {
     throw errorGenerate(404, 'Not found');
   }
   const { id, name, address, city, state, zipcode, neighborhood, phone } = user;
-  return { id, name, email, address, city, state, zipcode, neighborhood, phone };
+  const updateUser = { id, name, email, address, city, state, zipcode, neighborhood, phone };
+  const userDecode = generateJWTToken(updateUser)
+  return userDecode;
 };
 
 const register = async (name, email, address, city, state, zipcode, neighborhood, phone, password) => {
@@ -51,7 +53,8 @@ const update = async (id, name, email, address, city, state, zipcode, neighborho
       throw errorGenerate(500, 'A nova senha deve ser diferente da senha atual.');
     }
     const updateUser = await User.update({ name, email, address, city, state, zipcode, neighborhood, phone, newPassword, privacy: true }, { where: { id } });
-    return updateUser;
+    const userDecode = generateJWTToken(updateUser)
+    return userDecode;
   } catch (error) {
     console.log(error);
     throw errorGenerate(error.status, error.message);

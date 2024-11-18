@@ -13,8 +13,6 @@
   z-index: 1;
 }
 
-
-
 .CartInfo{
   margin-left: 10%;
   margin-top: 2rem;
@@ -22,10 +20,10 @@
 }
 .productsCart{
   display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin-top: 1rem;
-    margin-left: 1rem;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .error{

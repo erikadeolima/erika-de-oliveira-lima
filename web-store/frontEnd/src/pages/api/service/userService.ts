@@ -9,10 +9,11 @@ export interface TDataUpdateUser extends TUserInfo {
   password: string;
 }
 
-export const login = async (email: string, password: string): Promise<TUserInfo> => {
+export const login = async (email: string, password: string): Promise<string> => {
   const body = { email, password };
   try {
     const response = await requestLogin('/', body);
+    
     return response;
   } catch (error: any) {
     return error;
